@@ -32,6 +32,12 @@
 #                             Supported properties: src, to, via, dev, scope,
 #                                                   table.
 #
+# $virtual_rules::        Set floating rules.
+#
+#                          May be specified as a hash (or array of hashes)
+#                             containing extra properties
+#                             Supported properties: src, to, via, dev, scope
+#
 # $virtual_ipaddress_excluded:: For cases with large numbers (eg 200) of IPs
 #                               on the same interface. To decrease the number
 #                               of packets sent in adverts, you can exclude
@@ -159,6 +165,7 @@ define keepalived::vrrp::instance (
   $virtual_ipaddress_int                    = undef,
   $virtual_ipaddress_excluded               = undef,
   $virtual_routes                           = undef,
+  $virtual_rules                            = undef,
   $smtp_alert                               = false,
   $nopreempt                                = false,
   $preempt_delay                            = undef,

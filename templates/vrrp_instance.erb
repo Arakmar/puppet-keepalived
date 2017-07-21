@@ -158,6 +158,24 @@ vrrp_instance <%= @_name %> {
   }
   <%- end -%>
 
+  <%- if @virtual_rules -%>
+  virtual_rules {
+  <%- if @virtual_rules.class != Array -%>
+    <%- vrules = [ @virtual_rules ] -%>
+  <%- else -%>
+    <%- vrules = @virtual_rules -%>
+  <%- end -%>
+  <%- vrules.each do |rule| -%>
+    <%- if rule.class == Hash -%>
+      <%- attrs = Hash[ rule.select { |k,v| ['nat', 'from', 'table', 'tos', 'fwmark', 'iif', 'oif', 'pref'].include? k } ] -%>
+      <%= rule['rule'] %>  <%= attrs.sort_by{ |k,v| k }.entries.join ' ' %>
+    <%- else -%>
+      <%= rule %>
+    <%- end -%>
+  <%- end -%>
+  }
+  <%- end -%>
+
   <%- if @multicast_source_ip -%>
   mcast_src_ip <%= @multicast_source_ip %>
   <%- end -%>

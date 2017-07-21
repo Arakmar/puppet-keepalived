@@ -24,7 +24,7 @@
 #
 # $virtual_routes::        Set floating routes.
 #
-#                          May be specified as a hash (or array of hashes)
+#                          May be specified as a hash / string (or array of hashes / strings)
 #                             containing extra properties
 #                             e.g. `{ 'src' => '10.0.0.1',
 #                                     'to' => '192.168.30.0/24',
